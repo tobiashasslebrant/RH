@@ -22,7 +22,7 @@ http.createServer(function(request, response) {
   fs.exists(filename, function(exists) {
 
     if(uri.startsWith("/api/")){
-      api.route(uri, request, response);
+      api().route(uri, request, response);
       return;
     }
 
