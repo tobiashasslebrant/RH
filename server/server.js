@@ -34,7 +34,7 @@ http.createServer(function(request, response) {
     }
 
     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
-
+    
     fs.readFile(filename, "binary", function(err, file) {
       if(err) {        
         response.writeHead(500, {"Content-Type": "text/plain"});
@@ -50,8 +50,9 @@ http.createServer(function(request, response) {
       response.write(file, "binary");
       response.end();
     });
+
+   
   });
-  
 
 }).listen(parseInt(port, 10));
 
