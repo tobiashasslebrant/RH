@@ -19,8 +19,10 @@ var rh_statistics = require("./statistics")
         return;
       }
       if(uri.startsWith(routes.statistics)) {
-        var round = params(routes.statistics)[0];
-        rh_statistics().get(request, response, round);
+        var team = params(routes.statistics)[0];
+        var division = params(routes.statistics)[1]; 
+        var round = params(routes.statistics)[2];
+        rh_statistics().get(request, response, team, division, round);
         return;
       }
       response.writeHead(404, {"Content-Type": "text/plain"});

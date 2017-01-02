@@ -11,11 +11,12 @@ module.exports = function Statistics() {
   };
 
   return {
-    get: function(request, response, round){
+    get: function(request, response, team, division, round){
       //http://www.dartstatistik.se/league/stdf/1617/statistics/3D_11_ROCKH.php
+      //http://localhost:888/api/statistics/ROCKH/3D/11
       var options = {
             host: 'www.dartstatistik.se',
-            path: '/league/stdf/1617/statistics/3D_' + round + '_ROCKH.php'
+            path: '/league/stdf/1617/statistics/'+ division +'_' + round + '_'+ team +'.php'
       };
 
       client.get(options, data => {
