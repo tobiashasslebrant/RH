@@ -1,23 +1,30 @@
 var http = require("http");
-var rh_statistics = require("./statistics")
+var rh_statistics = require("./statistics");
+var rh_matches = require("./matches");
 
  module.exports = function() {
    var routes = {
      test: "/api/test",
+     matches: "/api/matches",
      statistics: "/api/statistics/"
    };
 
    return {
      route: function (uri, request, response) {
-       var params = function(r){
+      var params = r => {
           return uri.substring(r.length).split("/");
-       };
-
+      };
       if(uri.startsWith(routes.test))  {
         response.write("test");
         response.end();
         return;
       }
+
+      if(uri.startsWith(routes.matches)) {
+        rh_matches().get(request, response);
+        return;
+      }
+
       if(uri.startsWith(routes.statistics)) {
         var team = params(routes.statistics)[0];
         var division = params(routes.statistics)[1]; 
