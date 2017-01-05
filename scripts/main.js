@@ -1,8 +1,8 @@
 var VanillaAjax = function(){
   return {
-    get:  (callback) => {
+    get:  (url,callback) => {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'api/matches');
+      xhr.open('GET', url);
       xhr.onload = () => {
           if (xhr.status === 200) {
               callback(xhr.responseText);
@@ -13,7 +13,7 @@ var VanillaAjax = function(){
   }
 }();
 
-VanillaAjax.get(data => {
+VanillaAjax.get('api/matches', data => {
   new Vue({
     el: '#app-4',
     data: {
