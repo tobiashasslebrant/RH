@@ -1,3 +1,32 @@
+var testData = {
+  homeTeam: "Rockhangers"
+};
+
+Vue.component('matches-list', {
+  template: '<match-item></match-item>',
+ 
+});
+
+Vue.component('match-item', {
+  template: '<p>hej</p>',
+  props: {
+    item: {
+      type: Object,
+      default: function () {
+        return { message: 'no data' }
+      }
+    }
+  }
+});
+
+
+
+
+new Vue({
+  el: '#matches-id'
+})
+
+
 var VanillaAjax = function(){
   return {
     get:  (url,callback) => {

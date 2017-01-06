@@ -7,9 +7,14 @@
         <div id="app-4">
             <ol>
                 <li v-for="match in matches">
-                {{ match.HomeTeam }}
+                    <match-item></match-item>
+                <!--{{ match.HomeTeam }}-->
                 </li>
             </ol>
+        </div>
+
+        <div id="matches-id">
+                <matches-list></matches-list>
         </div>
 
         <script src="scripts/main.js"></script>
