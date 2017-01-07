@@ -13,15 +13,15 @@ module.exports = function Statistics() {
   };
 
   return {
-    get: (request, response, team, division, round) => {
+    get: (request, response, league, team, division, round) => {
       //http://www.dartstatistik.se/league/stdf/1617/statistics/3D_11_ROCKH.php
       //http://localhost:888/api/statistics/ROCKH/3D/11
       var options = {
             host: 'www.dartstatistik.se',
-            path: '/league/stdf/1617/statistics/'+ division +'_' + round + '_'+ team +'.php'
+            path: '/league/stdf/' + league + '/statistics/'+ division +'_' + round + '_'+ team +'.php'
       };
 
-      var cacheKey = "statistics_" + division + "_" + round + "_" + team;
+      var cacheKey = "statistics_" + league + "_" + division + "_" + round + "_" + team;
       client.get(options, cacheKey,
         data => {
           var firstpos = nthIndex(data, "<table", 6);

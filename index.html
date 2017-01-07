@@ -1,23 +1,32 @@
 <html>
     <head>
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <title>Rockhangers</title>
     </head>
     <body>
         
         <H1>Rockhangers</H1>
-        <div id="app">
-            <ul>
+        <div id="app" class="container">
+            <ul class="list-group">
                 <match v-for="match in matches" :match="match"></match>
             </ul>
         </div>
 
         <template id="match-template">
-            <li>
-                <span>{{ match.HomeTeam }}</span> <span>{{ match.AwayTeam }}</span>
+            <li class="row">
+                <div class="listgroup-item">
+                    <short-date class="col-xs-2 label label-default" :date="match.Date"></short-date>
+                    <span class="col-xs-4">{{ match.HomeTeam }}</span>
+                    <span class="col-xs-4">{{ match.AwayTeam }}</span>
+                </div>
+                <input type="button" class="col-xs-2 btn btn-xs btn-info" value="Result" />
             </li>
         </template>
 
-       <script src="scripts/vanillaAjax.js"></script>
-       <script src="scripts/main.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="scripts/vanillaAjax.js"></script>
+        <script src="scripts/main.js"></script>
     </body>
 </html>

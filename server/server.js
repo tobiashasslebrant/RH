@@ -21,6 +21,13 @@ http.createServer(function(request, response) {
 
   fs.exists(filename, function(exists) {
 
+    if(uri.startsWith("/server/")){
+       response.writeHead(404, {"Content-Type": "text/plain"});
+      response.write("404 Not Found\n");
+      response.end();
+      return;
+    }
+
     if(uri.startsWith("/api/")){
       api().route(uri, request, response);
       return;

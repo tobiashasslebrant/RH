@@ -26,10 +26,11 @@ var rh_matches = require("./matches");
       }
 
       if(uri.startsWith(routes.statistics)) {
-        var team = params(routes.statistics)[0];
-        var division = params(routes.statistics)[1]; 
-        var round = params(routes.statistics)[2];
-        rh_statistics().get(request, response, team, division, round);
+        var league = params(routes.statistics)[0];
+        var team = params(routes.statistics)[1];
+        var division = params(routes.statistics)[2]; 
+        var round = params(routes.statistics)[3];
+        rh_statistics().get(request, response, league, team, division, round);
         return;
       }
       response.writeHead(404, {"Content-Type": "text/plain"});
