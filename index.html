@@ -3,21 +3,21 @@
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
     </head>
     <body>
+        
         <H1>Rockhangers</H1>
-        <div id="app-4">
-            <ol>
-                <li v-for="match in matches">
-                    <match-item></match-item>
-                <!--{{ match.HomeTeam }}-->
-                </li>
-            </ol>
+        <div id="app">
+            <ul>
+                <match v-for="match in matches" :match="match"></match>
+            </ul>
         </div>
 
-        <div id="matches-id">
-                <matches-list></matches-list>
-        </div>
+        <template id="match-template">
+            <li>
+                <span>{{ match.HomeTeam }}</span> <span>{{ match.AwayTeam }}</span>
+            </li>
+        </template>
 
-        <script src="scripts/main.js"></script>
+       <script src="scripts/vanillaAjax.js"></script>
+       <script src="scripts/main.js"></script>
     </body>
-    
 </html>
