@@ -23,7 +23,6 @@ module.exports = {
               data = filter(data);
             }
             fs.writeFile(fileName, data, "utf8", (e)=> {
-              console.log(e.message);
               callback(data);
             })
           });

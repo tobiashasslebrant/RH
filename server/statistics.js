@@ -15,7 +15,7 @@ module.exports = function Statistics() {
   return {
     get: (request, response, league, team, division, round) => {
       //http://www.dartstatistik.se/league/stdf/1617/statistics/3D_11_ROCKH.php
-      //http://localhost:888/api/statistics/ROCKH/3D/11
+      //http://localhost:888/api/statistics/1617/ROCKH/3D/11
       var options = {
             host: 'www.dartstatistik.se',
             path: '/league/stdf/' + league + '/statistics/'+ division +'_' + round + '_'+ team +'.php'

@@ -14,12 +14,20 @@
         <template id="match-template">
             <li class="row">
                 <div class="listgroup-item">
-                    <short-date class="col-xs-2 label label-default" :date="match.Date"></short-date>
+                    <short-date class="col-xs-2" :date="match.Date"></short-date>
                     <span class="col-xs-4">{{ match.HomeTeam }}</span>
                     <span class="col-xs-4">{{ match.AwayTeam }}</span>
                 </div>
-                <input type="button" class="col-xs-2 btn btn-xs btn-info" value="Result" />
+                <statistics class="col-xs-2" :match="match"></statistics>
             </li>
+        </template>
+
+        <template id="shortdate-template">
+            <span class="label label-default">{{formatDate()}}<span>
+        </template>
+
+        <template id="statistics-template">
+            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match)" v-bind:class="isDisabled(match.Date)" />
         </template>
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
