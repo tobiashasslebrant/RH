@@ -1,19 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Rockhangers</title>
+
     </head>
     <body>
         
         <H1>Rockhangers</H1>
-        <div id="app" class="container">
-            <ul class="list-group">
+        <div id="app" class="container-fluid">
+            <ul class="list-group" >
                 <match v-for="match in matches" :match="match"></match>
             </ul>
         </div>
 
         <template id="match-template">
-            <li class="row">
-                <div class="listgroup-item">
+            <li class="row well list-group-item">
+                <div>
                     <short-date class="col-xs-2" :date="match.Date"></short-date>
                     <span class="col-xs-4">{{ match.HomeTeam }}</span>
                     <span class="col-xs-4">{{ match.AwayTeam }}</span>
