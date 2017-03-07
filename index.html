@@ -32,7 +32,7 @@
         </template>
 
         <template id="statistics-template">
-            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match)" v-bind:class="isDisabled(match.Date)" />
+            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match)" :class="isDisabled(match.Date)"/>
         </template>
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>

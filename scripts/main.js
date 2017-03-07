@@ -35,7 +35,13 @@ Vue.component('statistics', {
   props: ['match'],
   methods: {
     showStatistics: (match,events) => {
-      var url = "/api/statistics/" + match.League +"/ROCKH/"+ match.Division +"/"+  match.Round;
+      var date = new Date(match.Date);
+      var year = date.getFullYear() - 2000;
+	    var season = date.getMonth() < 7 
+        ? (year - 1).toString() + year.toString() 
+        :  year.toString() + (year+1).toString();
+        
+      var url = "/api/statistics/ROCKH/stdf/" + season +"/"+ match.Division +"/"+  match.Round;
       VanillaAjax.get(url, json => {
         alert(json);
       });

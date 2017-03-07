@@ -21,16 +21,17 @@ var rh_matches = require("./matches");
       }
 
       if(uri.startsWith(routes.matches)) {
-        rh_matches().get(request, response);
+        rh_matches.get(request, response);
         return;
       }
 
       if(uri.startsWith(routes.statistics)) {
-        var league = params(routes.statistics)[0];
-        var team = params(routes.statistics)[1];
-        var division = params(routes.statistics)[2]; 
-        var round = params(routes.statistics)[3];
-        rh_statistics().get(request, response, league, team, division, round);
+        var team = params(routes.statistics)[0];
+        var league = params(routes.statistics)[1];
+        var season = params(routes.statistics)[2];
+        var division = params(routes.statistics)[3]; 
+        var round = params(routes.statistics)[4];
+        rh_statistics.get(request, response, team, league, season, division, round);
         return;
       }
       response.writeHead(404, {"Content-Type": "text/plain"});
