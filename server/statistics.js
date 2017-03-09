@@ -22,7 +22,7 @@ module.exports = function Statistics() {
             path: '/league/' + league + '/' + season + '/statistics/'+ division +'_' + round + '_'+ team +'.php'
       };
 
-      var cacheKey = options.path.replace('/','_').replace('.php','');
+      var cacheKey = options.path.replace(/\//g,'_').replace('.php','');
 
       client.get(options, cacheKey,
         data => {
