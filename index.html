@@ -12,7 +12,7 @@
         <H1>Rockhangers</H1>
         <div id="app" class="container-fluid">
             <ul class="list-group" >
-                <match v-for="match in matches" :match="match"></match>
+                <match v-for="match in matches" :key=match.id :match="match"></match>
             </ul>
         </div>
 
@@ -22,17 +22,23 @@
                     <short-date class="col-xs-2" :date="match.Date"></short-date>
                     <span class="col-xs-4">{{ match.HomeTeam }}</span>
                     <span class="col-xs-4">{{ match.AwayTeam }}</span>
+                    <show-statistics class="col-xs-2" :match="match"></show-statistics>
                 </div>
-                <statistics class="col-xs-2" :match="match"></statistics>
+                <statistics :match="match"></statistics>
             </li>
+            
         </template>
 
         <template id="shortdate-template">
             <span class="label label-default">{{formatDate()}}<span>
         </template>
 
+        <template id="showstatistics-template">
+            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)"/>
+        </template>
+        
         <template id="statistics-template">
-            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match)" :class="isDisabled(match.Date)"/>
+            <li v-html="match.Stats"></li>
         </template>
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>

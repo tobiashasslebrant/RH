@@ -3,6 +3,11 @@ Vue.component('match', {
   props: ['match'],
 });
 
+Vue.component('statistics', {
+  template: "#statistics-template",
+  props: ['match'],
+});
+
 Vue.component('shortDate', {
   template: "#shortdate-template",
   props: ['date'],
@@ -30,11 +35,12 @@ Vue.component('shortDate', {
   }
 });
 
-Vue.component('statistics', {
-  template: "#statistics-template",
+Vue.component('showStatistics', {
+  template: "#showstatistics-template",
   props: ['match'],
   methods: {
-    showStatistics: (match,events) => {
+    showStatistics: (match,event) => {
+      var parent = event.currentTarget.parentNode;
       var date = new Date(match.Date);
       var year = date.getFullYear() - 2000;
 	    var season = date.getMonth() < 7 
@@ -43,7 +49,7 @@ Vue.component('statistics', {
         
       var url = "/api/statistics/ROCKH/stdf/" + season +"/"+ match.Division +"/"+  match.Round;
       VanillaAjax.get(url, json => {
-        alert(json);
+         match.Stats = json;
       });
     },
     isDisabled: (date) => {
@@ -56,7 +62,6 @@ Vue.component('statistics', {
     }
   }
 });
-
 
 VanillaAjax.get('api/matches', json => {
   var result = JSON.parse(json);
