@@ -40,6 +40,12 @@ Vue.component('showStatistics', {
   props: ['match'],
   methods: {
     showStatistics: (match,event) => {
+      if(match.Stats != "")
+      {
+          match.Stats = "";
+          return;
+      }
+        
       var parent = event.currentTarget.parentNode;
       var date = new Date(match.Date);
       var year = date.getFullYear() - 2000;
@@ -49,7 +55,7 @@ Vue.component('showStatistics', {
         
       var url = "/api/statistics/ROCKH/stdf/" + season +"/"+ match.Division +"/"+  match.Round;
       VanillaAjax.get(url, json => {
-         match.Stats = json;
+          match.Stats = json;
       });
     },
     isDisabled: (date) => {

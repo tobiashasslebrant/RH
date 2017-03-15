@@ -19,10 +19,10 @@
         <template id="match-template">
             <li class="row well list-group-item">
                 <div>
-                    <short-date class="col-xs-2" :date="match.Date"></short-date>
-                    <span class="col-xs-4">{{ match.HomeTeam }}</span>
-                    <span class="col-xs-4">{{ match.AwayTeam }}</span>
-                    <show-statistics class="col-xs-2" :match="match"></show-statistics>
+                    <short-date class="col-xs-1" :date="match.Date"></short-date>
+                    <span class="col-xs-5">{{ match.HomeTeam }}</span>
+                    <span class="col-xs-5">{{ match.AwayTeam }}</span>
+                    <show-statistics class="col-xs-1" :match="match"></show-statistics>
                 </div>
                 <statistics :match="match"></statistics>
             </li>
@@ -30,11 +30,13 @@
         </template>
 
         <template id="shortdate-template">
-            <span class="label label-default">{{formatDate()}}<span>
+            <span>{{formatDate()}}<span>
         </template>
 
         <template id="showstatistics-template">
-            <input class="btn btn-xs btn-info" type="button" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)"/>
+            <button type="button" class="btn btn-default" aria-label="Left Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)">
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+            </button> 
         </template>
         
         <template id="statistics-template">
