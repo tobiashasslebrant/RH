@@ -13,118 +13,125 @@
         </div>
 
         <template id="match-template">
-            <li class="row well list-group-item">
-                <div class="panel panel-default" >
-                    <div class="panel-heading col-xs-12">
-                        <short-date class="col-xs-2" :date="match.Date"></short-date>
-                        <span class="col-xs-4">{{ match.HomeTeam }}</span>
-                        <span class="col-xs-4">{{ match.AwayTeam }}</span>
-                        <span class="col-xs-2"><show-statistics :match="match"></show-statistics><span>
-                    </div>
-                    <statistics :match="match"></statistics>
+            <li class="row list-group-item ">
+                <div class="col-xs-12 nopadding">
+                    <short-date class="col-xs-2 text-left text-nowrap small nopadding" :date="match.Date"></short-date>
+                    <span class="col-xs-4 text-nowrap small nopadding">{{ match.HomeTeam }} </span>
+                    <span class="col-xs-4 text-nowrap small nopadding">{{ match.AwayTeam }}</span>
+                    <span class="col-xs-2 nopadding"><show-statistics :match="match"></show-statistics><span>
                 </div>
+                <statistics :match="match"></statistics>
             </li>
         </template>
 
         <template id="shortdate-template">
-            <strong>{{formatDate()}}<strong>
+            <span>{{formatDate()}}<span>
         </template>
 
         <template id="showstatistics-template">
-            <button type="button" class="btn btn-default pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)">
+            <button type="button" class="btn btn-default btn-xs pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)">
                 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
             </button> 
         </template>
         
         <template id="statistics-template">
-            <div class="panel-body">
+            <div>
                 <div v-html="match.Stats"></div>
-                <div class="col-xs-12">
-                    <h4 class="col-xs-12">
-                        Singel 1
-                    </h4>
-                    <div class="col-xs-4">
-                    </div>
-                    <div class="col-xs-4">
-                        Toby
-                    </div>
-                    <div class="col-xs-4">
-                        Patrik
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        Resultat
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        3
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        0
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        Set 1
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        25 pil
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        30 kvar
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        Set 2
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        19 pil
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        220 kvar
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        Set 3
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        12 pil
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        345 kvar
-                    </div>
+                <ul class="list-group match-item">
+                    <li class="col-xs-12 list-group-item list-group-item-info">
+                        <strong class="col-xs-4 ">Singel 1</strong>
+                        <div class="col-xs-4">Tobias Hasslebrant</div>
+                        <div class="col-xs-4">Patrik Rufelt</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Resultat</div>
+                        <div class="col-xs-4">3</div>
+                        <div class="col-xs-4">0</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 1</div>
+                        <div class="col-xs-4">25 pil</div>
+                        <div class="col-xs-4">30 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 2</div>
+                        <div class="col-xs-4">19 pil</div>
+                        <div class="col-xs-4">220 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 3</div>
+                        <div class="col-xs-4">12 pil</div>
+                        <div class="col-xs-4">345 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Tons</div>
+                        <div class="col-xs-4">10</div>
+                        <div class="col-xs-4">1</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">180's</div>
+                        <div class="col-xs-4">2</div>
+                        <div class="col-xs-4">0</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Hög utg.</div>
+                        <div class="col-xs-4">134/145</div>
+                        <div class="col-xs-4">-</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Pilsnitt</div>
+                        <div class="col-xs-4">22.45</div>
+                        <div class="col-xs-4">11.56</div>
+                    </li>
+                </ul>
 
-                    <div class="bg-info col-xs-4">
-                        Tons
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        10
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        1
-                    </div>
-                     <div class="bg-primary col-xs-4">
-                        180's
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        2
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        0
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        Hög utgång
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        134/145
-                    </div>
-                    <div class="bg-info col-xs-4">
-                        -
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        Pilsnitt
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        22.45
-                    </div>
-                    <div class="bg-primary col-xs-4">
-                        11.56
-                    </div>
-                </div>
+                   <ul class="list-group match-item">
+                    <li class="col-xs-12 list-group-item list-group-item-info">
+                        <strong class="col-xs-4 ">Dubbel 1</strong>
+                        <div class="col-xs-4">Tobias Hasslebrant</div>
+                        <div class="col-xs-4">Patrik Rufelt</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Resultat</div>
+                        <div class="col-xs-4">3</div>
+                        <div class="col-xs-4">0</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 1</div>
+                        <div class="col-xs-4">25 pil</div>
+                        <div class="col-xs-4">30 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 2</div>
+                        <div class="col-xs-4">19 pil</div>
+                        <div class="col-xs-4">220 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Set 3</div>
+                        <div class="col-xs-4">12 pil</div>
+                        <div class="col-xs-4">345 kvar</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Tons</div>
+                        <div class="col-xs-4">10</div>
+                        <div class="col-xs-4">1</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">180's</div>
+                        <div class="col-xs-4">2</div>
+                        <div class="col-xs-4">0</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Hög utg.</div>
+                        <div class="col-xs-4">134/145</div>
+                        <div class="col-xs-4">-</div>
+                    </li>
+                    <li class="col-xs-12 list-group-item">
+                        <div class="col-xs-4">Pilsnitt</div>
+                        <div class="col-xs-4">22.45</div>
+                        <div class="col-xs-4">11.56</div>
+                    </li>
+                </ul>
             </div>
               
         </template>
@@ -135,5 +142,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="scripts/vanillaAjax.js"></script>
         <script src="scripts/main.js"></script>
+
+        <style>
+            .nopadding {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .match-item {
+                margin-top: 30px;
+            }
+        </style>
     </body>
 </html>
