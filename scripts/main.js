@@ -5,7 +5,7 @@ Vue.component('match', {
 
 Vue.component('statistics', {
   template: "#statistics-template",
-  props: ['match'],
+  props: ['round'],
 });
 
 Vue.component('shortDate', {
@@ -40,9 +40,10 @@ Vue.component('showStatistics', {
   props: ['match'],
   methods: {
     showStatistics: (match,event) => {
-      if(match.Stats != "")
+      if(match.Result != "")
       {
-          match.Stats = "";
+          match.Result = "";
+          
           return;
       }
         
@@ -54,8 +55,81 @@ Vue.component('showStatistics', {
         :  year.toString() + (year+1).toString();
         
       var url = "/api/statistics/ROCKH/stdf/" + season +"/"+ match.Division +"/"+  match.Round;
-      VanillaAjax.get(url, json => {
-          match.Stats = json;
+      VanillaAjax.get(url, table => {
+          var obj = $.parseHTML(table);
+          var results = [];
+       
+          $(obj).find('tr').each((rowIndex, row) => {
+            if(rowIndex != 0)
+            {
+                var roundRegex = /^([DS])([1-9])$/;
+                var round = roundRegex.exec(row.children[0].innerText);
+                if(round)
+                {
+                    var clean = (s) => {
+                        if(s == "&nbsp;"){
+                          return "";
+                        }
+                        if(s.trim() == ''){
+                          return "";
+                        }
+                        return s;
+                    };
+                    var set = (s) => {
+                        var str = clean(s);
+                        if(str == ""){
+                          return "";
+                        }
+                        var res = s.split('\n');
+                        if(res[1] == '0'){
+                          return res[0] + " pil";
+                        }
+                        else{
+                          return res[1] + " kvar";
+                        }
+                    };
+                    var indx = (s,index) => {
+                      var res = clean(s);
+                      if(res == ""){
+                        return s;
+                      }
+                      return res.split('-')[index].trim();
+                    };
+                    var result = {
+                        round: round[1] + round[2],
+                        player1: row.children[1].innerText,
+                        player2: row.children[12].innerText,
+                        player1Score: indx(row.children[23].innerText,0),
+                        player2Score: indx(row.children[23].innerText,1),
+                        player1Set1: set(row.children[2].innerText),
+                        player2Set1: set(row.children[13].innerText),
+                        player1Set2: set(row.children[3].innerText),
+                        player2Set2: set(row.children[14].innerText),
+                        player1Set3: set(row.children[4].innerText),
+                        player2Set3: set(row.children[15].innerText),
+                        player1Set4: set(row.children[5].innerText),
+                        player2Set4: set(row.children[16].innerText),
+                        player1Set5: set(row.children[6].innerText),
+                        player2Set5: set(row.children[17].innerText),
+                        player1Ton: clean(row.children[7].innerText),
+                        player2Ton: clean(row.children[18].innerText),
+                        player1180: clean(row.children[8].innerText),
+                        player2180: clean(row.children[19].innerText),
+                        player1High: clean(row.children[9].innerText) + clean(row.children[10].innerText) + clean(row.children[11].innerText),
+                        player2High: clean(row.children[20].innerText) + clean(row.children[21].innerText) + clean(row.children[22].innerText),
+                        player1Average: indx(row.children[24].innerText,0),
+                        player2Average: indx(row.children[24].innerText,1),
+                      };
+                    results.push(result);
+                }
+                else {
+                  results[results.length-1].player1 += " " + row.children[0].innerText;
+                  results[results.length-1].player2 += " " + row.children[5].innerText;
+                }
+            }
+          });
+
+           match.Result = results;
       });
     },
     isDisabled: (date) => {
@@ -78,3 +152,5 @@ VanillaAjax.get('api/matches', json => {
     }
   });
 });
+
+
