@@ -1,6 +1,6 @@
 Vue.component('match', {
   template: "#match-template",
-  props: ['match'],
+  props: ['match',],
 });
 
 Vue.component('statistics', {
@@ -10,10 +10,10 @@ Vue.component('statistics', {
 
 Vue.component('shortDate', {
   template: "#shortdate-template",
-  props: ['date'],
+  props: ['match'],
   methods: {
     formatDate: function()  {
-      var realDate = new Date(this.date);
+      var realDate = new Date(this.match.Date);
       var month = 0;
       switch(realDate.getUTCMonth())
       {
@@ -132,12 +132,12 @@ Vue.component('showStatistics', {
            match.Result = results;
       });
     },
-    isDisabled: (date) => {
-      var matchDate = new Date(date);
+    isDisabled: (match) => {
+      var matchDate = new Date(match.Date);
       var today = new Date();
       var notPlayedYet = matchDate > today;
       return {
-          disabled: notPlayedYet
+          disabled: notPlayedYet || match.Division == ""
       }
     }
   }

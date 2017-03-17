@@ -7,7 +7,7 @@
     </head>
     <body>
         <div id="app" class="container-fluid">
-            <ul class="list-group" >
+            <ul id="main-list" class="list-group" >
                 <match v-for="match in matches" :key=match.id :match="match"></match>
             </ul>
         </div>
@@ -15,8 +15,8 @@
         <template id="match-template">
             <li class="row list-group-item ">
                 <div class="col-xs-12 nopadding">
-                    <short-date class="col-xs-2 text-left text-nowrap small nopadding" :date="match.Date"></short-date>
-                    <span class="col-xs-4 text-nowrap small nopadding">{{ match.HomeTeam }} </span>
+                    <short-date class="col-xs-2 text-left text-nowrap small nopadding" :match="match"></short-date>
+                    <span class="col-xs-4 text-nowrap small">{{ match.HomeTeam }} </span>
                     <span class="col-xs-4 text-nowrap small nopadding">{{ match.AwayTeam }}</span>
                     <span class="col-xs-2 nopadding"><show-statistics :match="match"></show-statistics><span>
                 </div>
@@ -25,11 +25,14 @@
         </template>
 
         <template id="shortdate-template">
-            <span>{{formatDate()}}<span>
+            <div class="btn btn-primary">
+                <div>{{formatDate()}}<div>
+                <div>{{match.Division}}<div>
+            </div>
         </template>
 
         <template id="showstatistics-template">
-            <button type="button" class="btn btn-default btn-xs pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match.Date)">
+            <button type="button" class="btn btn-default btn-xs pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match)">
                 <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
             </button> 
         </template>
@@ -111,9 +114,14 @@
             .match-item {
                 margin-top: 30px;
             }
-            .toby {
-                
-            }
+           /*.sticky{
+               top: 0;
+               position: fixed;
+               width:100%;
+           }
+           .nonsticky{
+               padding-top:63px;
+           }*/
         </style>
     </body>
 </html>
