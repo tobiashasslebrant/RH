@@ -68,17 +68,17 @@ Vue.component('showStatistics', {
                 {
                     var clean = (s) => {
                         if(s == "&nbsp;"){
-                          return "";
+                          return '';
                         }
                         if(s.trim() == ''){
-                          return "";
+                          return '';
                         }
                         return s;
                     };
                     var set = (s) => {
                         var str = clean(s);
-                        if(str == ""){
-                          return "";
+                        if(str == ''){
+                          return '';
                         }
                         var res = s.split('\n');
                         if(res[1] == '0'){
@@ -90,8 +90,8 @@ Vue.component('showStatistics', {
                     };
                     var indx = (s,index) => {
                       var res = clean(s);
-                      if(res == ""){
-                        return s;
+                      if(res == ''){
+                        return res;
                       }
                       return res.split('-')[index].trim();
                     };
@@ -115,16 +115,16 @@ Vue.component('showStatistics', {
                         player2Ton: clean(row.children[18].innerText),
                         player1180: clean(row.children[8].innerText),
                         player2180: clean(row.children[19].innerText),
-                        player1High: clean(row.children[9].innerText) + clean(row.children[10].innerText) + clean(row.children[11].innerText),
-                        player2High: clean(row.children[20].innerText) + clean(row.children[21].innerText) + clean(row.children[22].innerText),
+                        player1High: clean(row.children[9].innerText) + ' ' + clean(row.children[10].innerText) + ' ' + clean(row.children[11].innerText),
+                        player2High: clean(row.children[20].innerText) + ' ' + clean(row.children[21].innerText) + ' ' + clean(row.children[22].innerText),
                         player1Average: indx(row.children[24].innerText,0),
                         player2Average: indx(row.children[24].innerText,1),
                       };
                     results.push(result);
                 }
                 else {
-                  results[results.length-1].player1 += " " + row.children[0].innerText;
-                  results[results.length-1].player2 += " " + row.children[5].innerText;
+                  results[results.length-1].player1 += ' ' + row.children[0].innerText;
+                  results[results.length-1].player2 += ' ' + row.children[5].innerText;
                 }
             }
           });
