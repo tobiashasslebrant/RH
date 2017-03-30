@@ -32,8 +32,8 @@
         </template>
 
         <template id="showstatistics-template">
-            <button type="button" class="btn btn-default btn-xs pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match)">
-                <span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+            <button type="button" class="btn btn-default btn-sm pull-right" aria-label="Right Align" value="Result" v-on:click="showStatistics(match,$event)" :class="isDisabled(match)">
+                <span class="glyphicon glyphicon-align-right" aria-hidden="false"></span>
             </button> 
         </template>
         
@@ -113,6 +113,9 @@
             }
             .match-item {
                 margin-top: 30px;
+            }
+            span.glyphicon {
+                font-size: 1.2em;
             }
            /*.sticky{
                top: 0;

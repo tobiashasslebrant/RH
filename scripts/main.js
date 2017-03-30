@@ -137,7 +137,7 @@ Vue.component('showStatistics', {
       var today = new Date();
       var notPlayedYet = matchDate > today;
       return {
-          disabled: notPlayedYet || match.Division == ""
+          hidden: notPlayedYet || match.Division == ""
       }
     }
   }
