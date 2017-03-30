@@ -3,7 +3,7 @@ var http = require("http"),
     path = require("path"),
     fs = require("fs"),
     api = require("./api")
-    port = process.argv[2] || 888;
+    port = process.env.PORT || 888;
 
 http.createServer(function(request, response) {
 
