@@ -36,7 +36,7 @@ module.exports = function Statistics() {
           response.writeHead(200, headers);
           response.write(data);
           response.end();
-      });
+      },true);
     }
   };
 }();

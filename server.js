@@ -7,8 +7,6 @@ var http = require("http"),
 
 http.createServer(function(request, response) {
 
-  console.log(request.filename);
-
   var uri = url.parse(request.url).pathname
     , filename = path.join(process.cwd(), uri);
 
